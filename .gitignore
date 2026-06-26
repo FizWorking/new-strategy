@@ -1,0 +1,5 @@
+.env
+position.json
+trading_bot.log
+__pycache__/
+*.pyc

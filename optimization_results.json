@@ -1,0 +1,26 @@
+[
+  {
+    "method": "atr",
+    "close_confirm": true,
+    "sl_atr_mult": 2.0,
+    "tp1_atr_mult": 0.5,
+    "tp2_atr_mult": 1.5,
+    "trades": 2470,
+    "win_rate": 76.5,
+    "pnl": 13.29,
+    "avg_win": 0.11,
+    "avg_loss": -0.35
+  },
+  {
+    "method": "atr",
+    "close_confirm": true,
+    "sl_atr_mult": 1.5,
+    "tp1_atr_mult": 0.5,
+    "tp2_atr_mult": 1.5,
+    "trades": 2904,
+    "win_rate": 70.9,
+    "pnl": 10.01,
+    "avg_win": 0.11,
+    "avg_loss": -0.27
+  }
+]
