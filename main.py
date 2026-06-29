@@ -2,6 +2,8 @@ import os
 import time
 import json
 import logging
+import threading
+from http.server import HTTPServer, BaseHTTPRequestHandler
 from datetime import datetime, timezone, timedelta
 from dotenv import load_dotenv
 from binance.client import Client
@@ -259,6 +261,26 @@ def main():
 
     logger.info("Bot shutting down.")
 
+
+class HealthHandler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        self.send_response(200)
+        self.send_header("Content-Type", "application/json")
+        self.end_headers()
+        self.wfile.write(b'{"status": "running"}')
+    def log_message(self, format, *args):
+        logger.debug(f"Health: {format % args}")
+
+
+def run_health_server():
+    port = int(os.getenv("PORT", "10000"))
+    server = HTTPServer(("0.0.0.0", port), HealthHandler)
+    logger.info(f"Health server listening on port {port}")
+    server.serve_forever()
+
+
+thread = threading.Thread(target=run_health_server, daemon=True)
+thread.start()
 
 if __name__ == "__main__":
     main()
